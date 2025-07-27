@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="assest/logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vishwaloka Vandana - Tour Booker</title>
+  <link rel="icon" href="">
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
@@ -214,10 +214,12 @@
   <script>
     const tours = {
       India: [
-        { value: "Day 23", label: "Day 23" },
-        { value: "Day 14", label: "Day 14" },
+        { value: "Day 13", label: "Day 13" },
         { value: "Day 15", label: "Day 15" },
-        { value: "Day 17", label: "Day 17" }
+        { value: "Day 17", label: "Day 17" },
+        { value: "Day 21", label: "Day 21" },
+        { value: "Day 25", label: "Day 25" },
+        { value: "Day 11", label: "Day 11" }
       ],
       Local: [
         { value: "Jaffna Day 3", label: "Jaffna Day 3" },
@@ -244,28 +246,20 @@
 
     function getCurrentDate() {
       const d = new Date();
-      return ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()};
+      return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
     }
 
     function formatBookingMessage(data) {
       return `🧾 New Tour Booking Request
 
 👤 Name: ${data.name}
-
 🎂 Age: ${data.age}
-
 🚻 Gender: ${data.gender === 'Female' ? '👩 Female' : (data.gender === 'Male' ? '👨 Male' : '⚧ Other')}
-
 📞 Phone: ${data.phone}
-
 💬 WhatsApp: ${data.whatsapp}
-
 🌍 Tour Type: ${data.tourType}
-
 🗺 Selected Tour: 🕌 ${data.tour}
-
 📨 Send Type: ${data.sendType}
-
 📅 Date: ${getCurrentDate()}`;
     }
 
@@ -273,15 +267,11 @@
       return `❌ Tour Booking Deleted
 
 👤 Name: ${data.name}
-
 🌍 Tour Type: ${data.tourType}
-
 🗺 Selected Tour: 🕌 ${data.tour}
-
 📅 Date: ${getCurrentDate()}`;
     }
 
-    // Populate tours dropdown when tour type changes
     tourTypeSelect.addEventListener('change', () => {
       clearAlert();
       const selectedType = tourTypeSelect.value;
@@ -298,13 +288,11 @@
       }
     });
 
-    // Enable delete button only when a tour is selected
     tourSelect.addEventListener('change', () => {
       clearAlert();
       deleteTourBtn.disabled = !tourSelect.value;
     });
 
-    // Form submit handler (Book Tour)
     document.getElementById('tourForm').addEventListener('submit', e => {
       e.preventDefault();
       clearAlert();
@@ -327,20 +315,18 @@
       confirmationMessage.className = 'confirmation-message';
 
       if (data.sendType === "WhatsApp") {
-        const targetNumber = "94773779951"; // your number without plus
-        const url = https://wa.me/${targetNumber}?text=${encodeURIComponent(messageText)};
+        const targetNumber = "94773779951";
+        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(messageText)}`;
         window.open(url, '_blank');
       } else {
         alert("Booking submitted:\n\n" + messageText);
       }
 
-      // Reset form and disable delete button
       document.getElementById('tourForm').reset();
       tourSelect.innerHTML = '<option value="" disabled selected>Select tour</option>';
       deleteTourBtn.disabled = true;
     });
 
-    // Delete button event handler
     deleteTourBtn.addEventListener('click', () => {
       clearAlert();
 
@@ -349,11 +335,10 @@
         return;
       }
 
-      if (!confirm(Are you sure you want to delete the tour: ${tourSelect.value} (${tourTypeSelect.value})?)) {
+      if (!confirm(`Are you sure you want to delete the tour: ${tourSelect.value} (${tourTypeSelect.value})?`)) {
         return;
       }
 
-      // Compose delete confirmation message data
       const deleteMsgData = {
         name: document.getElementById('name').value.trim() || 'N/A',
         tourType: tourTypeSelect.value,
@@ -362,17 +347,14 @@
 
       const deleteMessageText = formatDeleteMessage(deleteMsgData);
 
-      // Show delete message below form
       confirmationMessage.style.display = 'block';
       confirmationMessage.textContent = deleteMessageText;
       confirmationMessage.className = 'confirmation-message';
 
-      // Open WhatsApp with delete message
-      const targetNumber = "94773779951"; // your target without +
-      const url = https://wa.me/${targetNumber}?text=${encodeURIComponent(deleteMessageText)};
+      const targetNumber = "94773779951";
+      const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(deleteMessageText)}`;
       window.open(url, '_blank');
 
-      // Remove the deleted tour from local list & refresh dropdown
       const typeTours = tours[tourTypeSelect.value];
       const index = typeTours.findIndex(t => t.value === tourSelect.value);
       if (index > -1) {
@@ -381,6 +363,5 @@
       tourTypeSelect.dispatchEvent(new Event('change'));
     });
   </script>
-
 </body>
 </html>
