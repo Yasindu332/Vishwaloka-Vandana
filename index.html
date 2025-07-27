@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="assest/logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vishwaloka Vandana - Tour Booker</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: #222;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 20px #ff4500;
+    }
+    label {
+      color: #ffb84d;
+      font-weight: 600;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+    }
+    .confirmation-message {
+      background: #111;
+      color: #ffa500;
+      white-space: pre-line;
+      font-family: monospace;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 0 15px #ff6a00;
+      min-height: 140px;
+    }
+    .circle {
+      background-color: #ff4500;
+      color: white;
+      border-radius: 50%;
+      padding: 0.4em 0.5em;
+      margin-right: 0.2em;
+      box-shadow: 0 0 10px #ffa500;
+      display: inline-block;
+    }
+    .highlight {
+      color: #ff6a00;
+    }
+    .o-logo {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.1em;
+      width: 1.2em;
+      height: 1.2em;
+      background: radial-gradient(circle, #f5c400, #ff4500);
+      border-radius: 50%;
+    }
+    .o-logo .o {
+      color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+    .lotus {
+      position: absolute;
+      font-size: 0.7em;
+      color: black;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+    }
+    .subtitle {
+      margin-top: 0.5em;
+      letter-spacing: 0.3em;
+      color: #ffc400;
+      font-size: 1.2rem;
+      font-weight: bold;
+      position: relative;
+    }
+    .underline {
+      display: inline-block;
+      width: 60px;
+      height: 3px;
+      background: #ffc400;
+      margin-top: 0.4em;
+      margin-left: 0.5em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-container">
+    <div class="logo d-flex justify-content-center align-items-center fs-1 fw-bold text-warning">
+      <span class="circle">V</span>
+      <span>
+        <span class="highlight">ishwal</span>
+        <span class="o-logo">
+          <span class="o">o</span>
+          <span class="lotus">🪷</span>
+        </span>
+        <span class="highlight">ka</span>
+      </span>
+    </div>
+    <div class="subtitle">
+      <span class="vandana">VANDANA</span>
+      <span class="underline"></span>
+    </div>
+  </div>
+
+  <div class="form-container text-white">
+    <form id="tourForm">
+      <div class="mb-3">
+        <label for="tourType" class="form-label">Select Tour Type</label>
+        <select id="tourType" class="form-select" required>
+          <option value="" disabled selected>Select type</option>
+          <option value="India">India</option>
+          <option value="Local">Local</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name 📛</label>
+        <input type="text" id="name" class="form-control" placeholder="Your full name" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" id="age" class="form-control" min="1" max="120" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="gender" class="form-label">Select Gender</label>
+        <select id="gender" class="form-select" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone Number 📞</label>
+        <div class="input-group">
+          <select id="phoneCountryCode" class="form-select col-3" required>
+            <option value="+94">🇱🇰 +94</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+          </select>
+          <input type="text" id="phoneNumber" class="form-control" placeholder="Enter phone number" pattern="[0-9]{7,15}" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">WhatsApp Number 📱</label>
+        <div class="input-group">
+          <select id="whatsappCountryCode" class="form-select col-3" required>
+            <option value="+94">🇱🇰 +94</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+          </select>
+          <input type="text" id="whatsappNumber" class="form-control" placeholder="Enter WhatsApp number" pattern="[0-9]{7,15}" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="tourSelect" class="form-label">Select Tour</label>
+        <select id="tourSelect" class="form-select" required>
+          <option value="" disabled selected>Select tour</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="sendType" class="form-label">Send Type</label>
+        <select id="sendType" class="form-select" required>
+          <option value="WhatsApp" selected>WhatsApp (Recommended)</option>
+          <option value="SystemMessage">System Message</option>
+        </select>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-warning flex-grow-1">Book Tour</button>
+      </div>
+    </form>
+
+    <!-- Confirmation message shown here -->
+    <div id="confirmationMessage" class="confirmation-message" style="display:none;"></div>
+
+    <!-- DELETE BUTTON BELOW confirmation message -->
+    <div class="mt-3">
+      <button type="button" id="deleteTourBtn" class="btn btn-danger w-100" disabled>❌ Delete Tour</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const tours = {
+      India: [
+        { value: "Day 23", label: "Day 23" },
+        { value: "Day 14", label: "Day 14" },
+        { value: "Day 15", label: "Day 15" },
+        { value: "Day 17", label: "Day 17" }
+      ],
+      Local: [
+        { value: "Jaffna Day 3", label: "Jaffna Day 3" },
+        { value: "Katharagama Day 3", label: "Katharagama Day 3" }
+      ]
+    };
+
+    const tourTypeSelect = document.getElementById('tourType');
+    const tourSelect = document.getElementById('tourSelect');
+    const deleteTourBtn = document.getElementById('deleteTourBtn');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    function showAlert(message, type = 'success') {
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = message;
+      confirmationMessage.className = 'confirmation-message alert alert-' + (type === 'danger' ? 'danger' : 'warning');
+    }
+
+    function clearAlert() {
+      confirmationMessage.style.display = 'none';
+      confirmationMessage.textContent = '';
+      confirmationMessage.className = 'confirmation-message';
+    }
+
+    function getCurrentDate() {
+      const d = new Date();
+      return ${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()};
+    }
+
+    function formatBookingMessage(data) {
+      return `🧾 New Tour Booking Request
+
+👤 Name: ${data.name}
+
+🎂 Age: ${data.age}
+
+🚻 Gender: ${data.gender === 'Female' ? '👩 Female' : (data.gender === 'Male' ? '👨 Male' : '⚧ Other')}
+
+📞 Phone: ${data.phone}
+
+💬 WhatsApp: ${data.whatsapp}
+
+🌍 Tour Type: ${data.tourType}
+
+🗺 Selected Tour: 🕌 ${data.tour}
+
+📨 Send Type: ${data.sendType}
+
+📅 Date: ${getCurrentDate()}`;
+    }
+
+    function formatDeleteMessage(data) {
+      return `❌ Tour Booking Deleted
+
+👤 Name: ${data.name}
+
+🌍 Tour Type: ${data.tourType}
+
+🗺 Selected Tour: 🕌 ${data.tour}
+
+📅 Date: ${getCurrentDate()}`;
+    }
+
+    // Populate tours dropdown when tour type changes
+    tourTypeSelect.addEventListener('change', () => {
+      clearAlert();
+      const selectedType = tourTypeSelect.value;
+      tourSelect.innerHTML = '<option value="" disabled selected>Select tour</option>';
+      deleteTourBtn.disabled = true;
+
+      if (tours[selectedType]) {
+        tours[selectedType].forEach(tour => {
+          const option = document.createElement('option');
+          option.value = tour.value;
+          option.textContent = tour.label;
+          tourSelect.appendChild(option);
+        });
+      }
+    });
+
+    // Enable delete button only when a tour is selected
+    tourSelect.addEventListener('change', () => {
+      clearAlert();
+      deleteTourBtn.disabled = !tourSelect.value;
+    });
+
+    // Form submit handler (Book Tour)
+    document.getElementById('tourForm').addEventListener('submit', e => {
+      e.preventDefault();
+      clearAlert();
+
+      const data = {
+        tourType: tourTypeSelect.value,
+        name: document.getElementById('name').value.trim(),
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        phone: document.getElementById('phoneCountryCode').value + document.getElementById('phoneNumber').value.trim(),
+        whatsapp: document.getElementById('whatsappCountryCode').value + document.getElementById('whatsappNumber').value.trim(),
+        tour: tourSelect.value,
+        sendType: document.getElementById('sendType').value
+      };
+
+      const messageText = formatBookingMessage(data);
+
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = messageText;
+      confirmationMessage.className = 'confirmation-message';
+
+      if (data.sendType === "WhatsApp") {
+        const targetNumber = "94773779951"; // your number without plus
+        const url = https://wa.me/${targetNumber}?text=${encodeURIComponent(messageText)};
+        window.open(url, '_blank');
+      } else {
+        alert("Booking submitted:\n\n" + messageText);
+      }
+
+      // Reset form and disable delete button
+      document.getElementById('tourForm').reset();
+      tourSelect.innerHTML = '<option value="" disabled selected>Select tour</option>';
+      deleteTourBtn.disabled = true;
+    });
+
+    // Delete button event handler
+    deleteTourBtn.addEventListener('click', () => {
+      clearAlert();
+
+      if (!tourSelect.value || !tourTypeSelect.value) {
+        showAlert('Please select a tour and tour type to delete.', 'danger');
+        return;
+      }
+
+      if (!confirm(Are you sure you want to delete the tour: ${tourSelect.value} (${tourTypeSelect.value})?)) {
+        return;
+      }
+
+      // Compose delete confirmation message data
+      const deleteMsgData = {
+        name: document.getElementById('name').value.trim() || 'N/A',
+        tourType: tourTypeSelect.value,
+        tour: tourSelect.value,
+      };
+
+      const deleteMessageText = formatDeleteMessage(deleteMsgData);
+
+      // Show delete message below form
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.textContent = deleteMessageText;
+      confirmationMessage.className = 'confirmation-message';
+
+      // Open WhatsApp with delete message
+      const targetNumber = "94773779951"; // your target without +
+      const url = https://wa.me/${targetNumber}?text=${encodeURIComponent(deleteMessageText)};
+      window.open(url, '_blank');
+
+      // Remove the deleted tour from local list & refresh dropdown
+      const typeTours = tours[tourTypeSelect.value];
+      const index = typeTours.findIndex(t => t.value === tourSelect.value);
+      if (index > -1) {
+        typeTours.splice(index, 1);
+      }
+      tourTypeSelect.dispatchEvent(new Event('change'));
+    });
+  </script>
+
+</body>
+</html>
